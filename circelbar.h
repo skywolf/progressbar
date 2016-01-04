@@ -13,6 +13,7 @@ public:
 
 protected:
 	void paintEvent(QPaintEvent *);
+	void resizeEvent(QResizeEvent *);
 };
 
 #endif // CIRCELBAR_H

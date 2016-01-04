@@ -40,6 +40,13 @@ void BorderSectorBar::paintEvent(QPaintEvent *)
 	drawLineText(painter);
 }
 
+void BorderSectorBar::resizeEvent(QResizeEvent */*size*/)
+{
+	int s;
+	frameSize().width() > frameSize().height() ?
+				s = frameSize().height() : s = frameSize().width();
+	resize(s, s);
+}
 
 
 

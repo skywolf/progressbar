@@ -34,3 +34,13 @@ void BorderBar::paintEvent(QPaintEvent *)
 	drawLineText(painter);		//	绘画文字..
 }
 
+void BorderBar::resizeEvent(QResizeEvent */*size*/)
+{
+	int s;
+	frameSize().width() > frameSize().height() ?
+				s = frameSize().height() : s = frameSize().width();
+	resize(s, s);
+}
+
+
+

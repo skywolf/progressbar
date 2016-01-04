@@ -32,3 +32,10 @@ void CircelBar::paintEvent(QPaintEvent *)
 	drawLineText(painter);
 }
 
+void CircelBar::resizeEvent(QResizeEvent */*size*/)
+{
+	int s;
+	frameSize().width() > frameSize().height() ?
+				s = frameSize().height() : s = frameSize().width();
+	resize(s, s);
+}

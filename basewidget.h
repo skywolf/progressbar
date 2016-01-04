@@ -32,6 +32,9 @@ public:
 	QColor textColor() const;
 	void setTextColor(const QColor &testColor);
 
+signals:
+	void done();
+
 public slots:
 	void setCurrentValue(int currentValue);
 	void setMaxValue(int maxValue);

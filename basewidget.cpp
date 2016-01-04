@@ -22,7 +22,10 @@ qreal BaseWidget::percentage()
 
 void BaseWidget::setCurrentValue(int currentValue)
 {
-	m_currentValue = currentValue;
+	if (currentValue > m_maxValue || currentValue < 0)
+		m_currentValue = 100;
+	else
+		m_currentValue = currentValue;
 	update();
 }
 
