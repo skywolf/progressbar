@@ -3,51 +3,61 @@
 
 #include <QWidget>
 
-#define RADIAN 360 * 16
+namespace ProgressBar {
+	#define RADIAN 360 * 16
+	#define DRAWTEXT(painter, pen, font)	\
+	{	\
+		font.setPixelSize(width()/4);	\
+		painter.setFont(font);	\
+		pen.setColor(textColor());	\
+		painter.setPen(pen);	\
+		painter.drawText(0, 0, width(), height(), Qt::AlignCenter,	\
+						 QString::number(100 * currentValue() / maxValue()) + "%");	\
+	}\
 
-class BaseWidget : public QWidget
-{
-	Q_OBJECT
-//	Q_PROPERTY(int currentValue READ currentValue WRITE setCurrentValue)
-//	Q_PROPERTY(int maxValue READ maxValue WRITE setMaxValue)
-//	Q_PROPERTY(QString foregroundColor READ foregroundColor WRITE setForegroundColor)
-//	Q_PROPERTY(QString backgroundColor READ backgroundColor WRITE setBackgroundColor)
-//	Q_PROPERTY(QString textColor READ textColor WRITE setTextColor)
-public:
-	explicit BaseWidget(QWidget *parent = 0);
-	explicit BaseWidget(int _currentValue, int _maxValue, QWidget *parent = 0);
-	virtual ~BaseWidget() {}
+	class BaseWidget : public QWidget
+	{
+		Q_OBJECT
+	//	Q_PROPERTY(int currentValue READ currentValue WRITE setCurrentValue)
+	//	Q_PROPERTY(int maxValue READ maxValue WRITE setMaxValue)
+	//	Q_PROPERTY(QString foregroundColor READ foregroundColor WRITE setForegroundColor)
+	//	Q_PROPERTY(QString backgroundColor READ backgroundColor WRITE setBackgroundColor)
+	//	Q_PROPERTY(QString textColor READ textColor WRITE setTextColor)
+	public:
+		explicit BaseWidget(QWidget *parent = 0);
+		explicit BaseWidget(int _currentValue, int _maxValue, QWidget *parent = 0);
+		virtual ~BaseWidget() {}
 
-	qreal percentage();
+		qreal percentage();
 
-	inline int currentValue() const { return m_currentValue; }
-	inline int maxValue() const { return m_maxValue; }
+		inline int currentValue() const { return m_currentValue; }
+		inline int maxValue() const { return m_maxValue; }
 
-	QColor backgroundColor() const;
-	void setBackgroundColor(const QColor &backgroundColor);
+		QColor backgroundColor() const;
+		void setBackgroundColor(const QColor &backgroundColor);
 
-	QColor foregroundColor() const;
-	void setForegroundColor(const QColor &foregroundColor);
+		QColor foregroundColor() const;
+		void setForegroundColor(const QColor &foregroundColor);
 
-	QColor textColor() const;
-	void setTextColor(const QColor &testColor);
+		QColor textColor() const;
+		void setTextColor(const QColor &testColor);
 
-signals:
-	void done();
+	signals:
+		void done();
 
-public slots:
-	void setCurrentValue(int currentValue);
-	void setMaxValue(int maxValue);
+	public slots:
+		void setCurrentValue(int currentValue);
+		void setMaxValue(int maxValue);
 
-protected:
-	virtual void paintEvent(QPaintEvent *) = 0;
-	void drawLineText(QPainter &painter);
+	protected:
+		virtual void paintEvent(QPaintEvent *) = 0;
 
-private:
-	int m_currentValue, m_maxValue;
-	QColor m_backgroundColor;
-	QColor m_foregroundColor;
-	QColor m_textColor;
-};
+	private:
+		int m_currentValue, m_maxValue;
+		QColor m_backgroundColor;
+		QColor m_foregroundColor;
+		QColor m_textColor;
+	};
+}
 
 #endif // BASEWIDGET_H

@@ -1,21 +1,21 @@
 #include "horizontalbar.h"
 #include <QPainter>
 
-HorizontalBar::HorizontalBar(QWidget *parent) :
-	BaseWidget(parent)
+ProgressBar::HorizontalBar::HorizontalBar(QWidget *parent) :
+	BaseWidget(parent), m_font()
 {
 	setTextColor(QColor("#645454"));
 	resize(300, 30);
 }
 
-HorizontalBar::HorizontalBar(int _currentValue, int _maxValue, QWidget *parent) :
-	BaseWidget(_currentValue, _maxValue, parent)
+ProgressBar::HorizontalBar::HorizontalBar(int _currentValue, int _maxValue, QWidget *parent) :
+	BaseWidget(_currentValue, _maxValue, parent), m_font()
 {
 	setTextColor(QColor("#645454"));
 	resize(300, 30);
 }
 
-void HorizontalBar::paintEvent(QPaintEvent *)
+void ProgressBar::HorizontalBar::paintEvent(QPaintEvent *)
 {
 	qreal _width = width();
 	qreal _height = height();
@@ -24,7 +24,7 @@ void HorizontalBar::paintEvent(QPaintEvent *)
 	QPainter painter(this);
 	QRectF rect(2, 2, _width - 4, _height - 4);
 	QRectF rectForeground(2, 2, _height + ((_width - _height) * _percentage)- 4, _height - 4);
-	QPen pen;
+
 	painter.setRenderHint(QPainter::Antialiasing, true);		//	边缘平滑..
 
 	pen.setColor(foregroundColor());
@@ -38,11 +38,23 @@ void HorizontalBar::paintEvent(QPaintEvent *)
 
 	pen.setColor(textColor());
 	painter.setPen(pen);
+	painter.setFont(m_font);
 	painter.drawText(rectForeground, Qt::AlignRight | Qt::AlignVCenter,
 					 QString::number(int(_percentage * 100)) + "% ");
 
 }
 
-void HorizontalBar::resizeEvent(QResizeEvent * /* e */)
+void ProgressBar::HorizontalBar::resizeEvent(QResizeEvent * /* e */)
 {
+	m_font.setPixelSize(height() / 2);
+}
+
+QFont ProgressBar::HorizontalBar::font() const
+{
+	return m_font;
+}
+
+void ProgressBar::HorizontalBar::setFont(const QFont &font)
+{
+	m_font = font;
 }

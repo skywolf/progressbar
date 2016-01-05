@@ -3,10 +3,10 @@
 
 #include <QMainWindow>
 
-class BorderBar;
-class BorderSectorBar;
-class CircelBar;
-class HorizontalBar;
+#include "borderbar.h"
+#include "bordersectorbar.h"
+#include "circelbar.h"
+#include "horizontalbar.h"
 
 class MainWindow : public QMainWindow
 {
@@ -27,10 +27,10 @@ private:
 	int m_pos;
 	bool m_started;
 
-	BorderBar *m_borderBar;
-	BorderSectorBar *m_borderSectorBar;
-	CircelBar *m_circeBar;
-	HorizontalBar *m_horizontalBar;
+	ProgressBar::BorderBar *m_borderBar;
+	ProgressBar::BorderSectorBar *m_borderSectorBar;
+	ProgressBar::CircelBar *m_circeBar;
+	ProgressBar::HorizontalBar *m_horizontalBar;
 
 	int m_timeId;
 };

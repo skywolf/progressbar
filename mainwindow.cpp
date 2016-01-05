@@ -1,8 +1,4 @@
 #include "mainwindow.h"
-#include "borderbar.h"
-#include "bordersectorbar.h"
-#include "circelbar.h"
-#include "horizontalbar.h"
 #include <QPainter>
 #include <QPushButton>
 #include <QHBoxLayout>
@@ -14,16 +10,16 @@ MainWindow::MainWindow(QWidget *parent)
 	resize(500, 350);
 	QWidget *widget = new QWidget(this);
 
-	m_borderBar = new BorderBar(0, 100, this);
+	m_borderBar = new ProgressBar::BorderBar(0, 100, this);
 	//m_borderBar->move(50, 100);
 
-	m_borderSectorBar = new BorderSectorBar(this);
+	m_borderSectorBar = new ProgressBar::BorderSectorBar(this);
 	//m_borderSectorBar->move(200, 100);
 
-	m_circeBar = new CircelBar(this);
+	m_circeBar = new ProgressBar::CircelBar(this);
 	//m_circeBar->move(350, 100);
 
-	m_horizontalBar = new HorizontalBar(this);
+	m_horizontalBar = new ProgressBar::HorizontalBar(this);
 	m_horizontalBar->setFixedHeight(30);			// 最好设置一下这里..
 	//m_horizontalBar->move(100, 300);
 
