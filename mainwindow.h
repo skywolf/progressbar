@@ -22,6 +22,7 @@ protected:
 
 private slots:
 	void start();
+	void setPos(int);
 
 private:
 	int m_pos;

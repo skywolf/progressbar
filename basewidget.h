@@ -12,7 +12,7 @@ namespace ProgressBar {
 		pen.setColor(textColor());	\
 		painter.setPen(pen);	\
 		painter.drawText(0, 0, width(), height(), Qt::AlignCenter,	\
-						 QString::number(100 * currentValue() / maxValue()) + "%");	\
+						 QString::number(100 * percentage()) + "%");	\
 	}\
 
 	class BaseWidget : public QWidget
@@ -28,7 +28,7 @@ namespace ProgressBar {
 		explicit BaseWidget(int _currentValue, int _maxValue, QWidget *parent = 0);
 		virtual ~BaseWidget() {}
 
-		qreal percentage();
+		qreal percentage();				//	获取当前值与最大值的比例..
 
 		inline int currentValue() const { return m_currentValue; }
 		inline int maxValue() const { return m_maxValue; }
@@ -48,9 +48,10 @@ namespace ProgressBar {
 	public slots:
 		void setCurrentValue(int currentValue);
 		void setMaxValue(int maxValue);
+		void setCurrentValue(qreal value);
 
 	protected:
-		virtual void paintEvent(QPaintEvent *) = 0;
+		virtual void paintEvent(QPaintEvent *);
 
 	private:
 		int m_currentValue, m_maxValue;

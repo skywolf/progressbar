@@ -1,11 +1,13 @@
 #include "basewidget.h"
 #include <QPainter>
+#include <QStyleOption>
 
 ProgressBar::BaseWidget::BaseWidget(QWidget *parent) :
 	QWidget(parent), m_currentValue(0), m_maxValue(100),
 	m_backgroundColor("#5f8aa4"), m_foregroundColor("#a6becd"), m_textColor("#5f8aa4")
 {
 	resize(100, 100);
+	//setAttribute(Qt::WA_TranslucentBackground);		//	背景透明..
 }
 
 ProgressBar::BaseWidget::BaseWidget(int _currentValue, int _maxValue, QWidget *parent) :
@@ -13,6 +15,7 @@ ProgressBar::BaseWidget::BaseWidget(int _currentValue, int _maxValue, QWidget *p
 	m_backgroundColor("#5f8aa4"), m_foregroundColor("#a6becd"), m_textColor("#5f8aa4")
 {
 	resize(100, 100);
+	//setAttribute(Qt::WA_TranslucentBackground);		//	背景透明..
 }
 
 qreal ProgressBar::BaseWidget::percentage()
@@ -23,7 +26,7 @@ qreal ProgressBar::BaseWidget::percentage()
 void ProgressBar::BaseWidget::setCurrentValue(int currentValue)
 {
 	if (currentValue >= m_maxValue)
-		m_currentValue = 100;
+		m_currentValue = m_maxValue;
 	else if	(currentValue <= 0)
 		m_currentValue = 0;
 	else
@@ -35,6 +38,19 @@ void ProgressBar::BaseWidget::setMaxValue(int maxValue)
 {
 	m_maxValue = maxValue;
 	update();
+}
+
+void ProgressBar::BaseWidget::setCurrentValue(qreal value)
+{
+	setCurrentValue(int(value * m_maxValue));
+}
+
+void ProgressBar::BaseWidget::paintEvent(QPaintEvent *)
+{
+	QPainter painter(this);
+	QStyleOption opt;
+	opt.init(this);
+	style()->drawPrimitive(QStyle::PE_Widget, &opt, &painter, this);
 }
 
 
