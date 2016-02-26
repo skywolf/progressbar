@@ -20,8 +20,9 @@ MainWindow::MainWindow(QWidget *parent)
 	//m_circeBar->move(350, 100);
 
 	m_horizontalBar = new ProgressBar::HorizontalBar(this);
-	m_horizontalBar->setFixedHeight(30);			// 最好设置一下这里..
-	m_horizontalBar->setDrag(true);
+	m_horizontalBar->setFixedHeight(30);			//	最好设置一下这里..
+	m_horizontalBar->setDrag(true);					//	设置可拖动..
+	m_horizontalBar->setCursorChange(true);			//	进入控件改变鼠标样式..
 	connect(m_horizontalBar, SIGNAL(currentValueChanged(int)), this, SLOT(setPos(int)));
 	//m_horizontalBar->move(100, 300);
 

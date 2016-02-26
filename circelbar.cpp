@@ -34,7 +34,7 @@ void ProgressBar::CircelBar::paintEvent(QPaintEvent *)
 	DRAWTEXT(painter, m_pen, m_font);		//	绘画文字..
 }
 
-void ProgressBar::CircelBar::resizeEvent(QResizeEvent */*size*/)
+void ProgressBar::CircelBar::resizeEvent(QResizeEvent * /*size*/)
 {
 	int s;
 	frameSize().width() > frameSize().height() ?

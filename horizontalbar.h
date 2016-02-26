@@ -1,9 +1,9 @@
 /*
  *	可做进度条，也可做滑动条来使用。
  *	进度条： 设置不可拖动,setDrag(false); setCursorChange(false);
- *	滑动条： 设置不可拖动,setDrag(true); setCursorChange(true);
+ *	滑动条： 设置可拖动,setDrag(true); setCursorChange(true);
  *
- *	m_cursorChange(鼠标样式是否改变) 默认是： true
+ *	m_cursorChange(鼠标样式是否改变) 默认是： false
  *	m_drag（是否拖拽）默认是： false
  * */
 

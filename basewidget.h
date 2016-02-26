@@ -13,7 +13,7 @@ namespace ProgressBar {
 		painter.setPen(pen);	\
 		painter.drawText(0, 0, width(), height(), Qt::AlignCenter,	\
 						 QString::number(100 * percentage()) + "%");	\
-	}\
+	}	\
 
 	class BaseWidget : public QWidget
 	{

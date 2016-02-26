@@ -41,7 +41,7 @@ void ProgressBar::BorderSectorBar::paintEvent(QPaintEvent *)
 	DRAWTEXT(painter, m_pen, m_font);		//	绘画文字..
 }
 
-void ProgressBar::BorderSectorBar::resizeEvent(QResizeEvent */*size*/)
+void ProgressBar::BorderSectorBar::resizeEvent(QResizeEvent * /*size*/)
 {
 	int s;
 	frameSize().width() > frameSize().height() ?

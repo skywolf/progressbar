@@ -34,7 +34,7 @@ void ProgressBar::BorderBar::paintEvent(QPaintEvent *)
 	DRAWTEXT(painter, m_pen, m_font);		//	绘画文字..
 }
 
-void ProgressBar::BorderBar::resizeEvent(QResizeEvent */*size*/)
+void ProgressBar::BorderBar::resizeEvent(QResizeEvent * /*size*/)
 {
 	int s;
 	frameSize().width() > frameSize().height() ?

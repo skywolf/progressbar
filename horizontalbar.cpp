@@ -3,7 +3,7 @@
 #include <QMouseEvent>
 
 ProgressBar::HorizontalBar::HorizontalBar(QWidget *parent) :
-	BaseWidget(parent), m_pen(), m_font(), m_isPressed(false), m_cursorChange(true)
+	BaseWidget(parent), m_pen(), m_font(), m_isPressed(false), m_cursorChange(false)
 {
 	setTextColor(QColor("#645454"));
 	resize(300, 30);
@@ -15,7 +15,7 @@ ProgressBar::HorizontalBar::HorizontalBar(QWidget *parent) :
 
 ProgressBar::HorizontalBar::HorizontalBar(int _currentValue, int _maxValue, QWidget *parent) :
 	BaseWidget(_currentValue, _maxValue, parent),m_pen(),
-	m_font(), m_isPressed(false), m_cursorChange(true)
+	m_font(), m_isPressed(false), m_cursorChange(false)
 {
 	setTextColor(QColor("#645454"));
 	resize(300, 30);
