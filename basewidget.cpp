@@ -2,87 +2,91 @@
 #include <QPainter>
 #include <QStyleOption>
 
-ProgressBar::BaseWidget::BaseWidget(QWidget *parent) :
-	QWidget(parent), m_currentValue(0), m_maxValue(100),
-	m_backgroundColor("#5f8aa4"), m_foregroundColor("#a6becd"), m_textColor("#5f8aa4")
+namespace ProgressBar
 {
-	resize(100, 100);
-	//setAttribute(Qt::WA_TranslucentBackground);		//	背景透明..
-}
+	BaseWidget::BaseWidget(QWidget *parent) :
+		QWidget(parent), m_currentValue(0), m_maxValue(100),
+		m_backgroundColor("#5f8aa4"), m_foregroundColor("#a6becd"), m_textColor("#5f8aa4")
+	{
+		resize(100, 100);
+		//setAttribute(Qt::WA_TranslucentBackground);		//	背景透明..
+	}
 
-ProgressBar::BaseWidget::BaseWidget(int _currentValue, int _maxValue, QWidget *parent) :
-	QWidget(parent), m_currentValue(_currentValue), m_maxValue(_maxValue),
-	m_backgroundColor("#5f8aa4"), m_foregroundColor("#a6becd"), m_textColor("#5f8aa4")
-{
-	resize(100, 100);
-	//setAttribute(Qt::WA_TranslucentBackground);		//	背景透明..
-}
+	BaseWidget::BaseWidget(int _currentValue, int _maxValue, QWidget *parent) :
+		QWidget(parent), m_currentValue(_currentValue), m_maxValue(_maxValue),
+		m_backgroundColor("#5f8aa4"), m_foregroundColor("#a6becd"), m_textColor("#5f8aa4")
+	{
+		resize(100, 100);
+		//setAttribute(Qt::WA_TranslucentBackground);		//	背景透明..
+	}
 
-qreal ProgressBar::BaseWidget::percentage()
-{
-	return (qreal)m_currentValue / m_maxValue;
-}
+	qreal BaseWidget::percentage()
+	{
+		return (qreal)m_currentValue / m_maxValue;
+	}
 
-void ProgressBar::BaseWidget::setCurrentValue(int currentValue)
-{
-	if (currentValue >= m_maxValue)
-		m_currentValue = m_maxValue;
-	else if	(currentValue <= 0)
-		m_currentValue = 0;
-	else
-		m_currentValue = currentValue;
-	update();
-}
+	void BaseWidget::setCurrentValue(int currentValue)
+	{
+		if (currentValue >= m_maxValue)
+			m_currentValue = m_maxValue;
+		else if	(currentValue <= 0)
+			m_currentValue = 0;
+		else
+			m_currentValue = currentValue;
+		update();
+	}
 
-void ProgressBar::BaseWidget::setMaxValue(int maxValue)
-{
-	m_maxValue = maxValue;
-	update();
-}
+	void BaseWidget::setMaxValue(int maxValue)
+	{
+		m_maxValue = maxValue;
+		update();
+	}
 
-void ProgressBar::BaseWidget::setCurrentValue(qreal value)
-{
-	setCurrentValue(int(value * m_maxValue));
-}
+	void BaseWidget::setCurrentValue(qreal value)
+	{
+		setCurrentValue(int(value * m_maxValue));
+	}
 
-void ProgressBar::BaseWidget::paintEvent(QPaintEvent *)
-{
-	QPainter painter(this);
-	QStyleOption opt;
-	opt.init(this);
-	style()->drawPrimitive(QStyle::PE_Widget, &opt, &painter, this);
-}
+	void BaseWidget::paintEvent(QPaintEvent *)
+	{
+		QPainter painter(this);
+		QStyleOption opt;
+		opt.init(this);
+		style()->drawPrimitive(QStyle::PE_Widget, &opt, &painter, this);
+	}
 
 
 
-QColor ProgressBar::BaseWidget::backgroundColor() const
-{
-	return m_backgroundColor;
-}
+	QColor BaseWidget::backgroundColor() const
+	{
+		return m_backgroundColor;
+	}
 
-void ProgressBar::BaseWidget::setBackgroundColor(const QColor &backgroundColor)
-{
-	m_backgroundColor = backgroundColor;
-}
+	void BaseWidget::setBackgroundColor(const QColor &backgroundColor)
+	{
+		m_backgroundColor = backgroundColor;
+	}
 
-QColor ProgressBar::BaseWidget::foregroundColor() const
-{
-	return m_foregroundColor;
-}
+	QColor BaseWidget::foregroundColor() const
+	{
+		return m_foregroundColor;
+	}
 
-void ProgressBar::BaseWidget::setForegroundColor(const QColor &foregroundColor)
-{
-	m_foregroundColor = foregroundColor;
-}
+	void BaseWidget::setForegroundColor(const QColor &foregroundColor)
+	{
+		m_foregroundColor = foregroundColor;
+	}
 
-QColor ProgressBar::BaseWidget::textColor() const
-{
-	return m_textColor;
-}
+	QColor BaseWidget::textColor() const
+	{
+		return m_textColor;
+	}
 
-void ProgressBar::BaseWidget::setTextColor(const QColor &textColor)
-{
-	m_textColor = textColor;
+	void BaseWidget::setTextColor(const QColor &textColor)
+	{
+		m_textColor = textColor;
+	}
+
 }
 
 
